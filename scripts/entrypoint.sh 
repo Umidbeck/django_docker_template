@@ -1,0 +1,15 @@
+#!/bin/sh
+
+set -e
+
+# PostgreSQL ni kutish
+python /app/scripts/wait_for_db.py
+
+# Migratsiyalarni bajarish
+python manage.py migrate
+
+# Statik fayllarni yig'ish
+python manage.py collectstatic --noinput
+
+# Djangoni ishga tushirish
+exec "$@"

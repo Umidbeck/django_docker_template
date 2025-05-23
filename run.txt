@@ -1,0 +1,35 @@
+ 1. Loyihani klon qilish yoki arxivdan ochish
+git clone https://github.com/your-template-repo.git myproject
+cd myproject
+
+# 2. .env faylini yaratish va sozlash
+cp .env.example .env
+nano .env  # Kerakli o'zgaruvchilarni tahrirlash
+2. Dastur Strukturasini Yaratish
+bash
+# 3. Docker konteynerlarni yaratish va ishga tushirish
+docker-compose build
+docker-compose up -d
+
+# 4. Docker ichida yangi Django loyiha yaratish (faqat birinchi marta)
+docker-compose exec web django-admin startproject config .
+
+# 5. Fayl huquqlarini to'g'rilash (agar kerak bo'lsa)
+docker-compose exec web chown -R myuser:myuser /app
+3. Dasturni Sozlash
+bash
+# 6. Settings fayllarini to'g'ri joylashtirish
+docker-compose exec web mkdir -p config/settings
+docker-compose exec web mv config/settings.py config/settings/base.py
+docker-compose exec web touch config/settings/__init__.py
+
+# 7. Ma'lumotlar bazasi migratsiyalari
+docker-compose exec web python manage.py migrate
+
+# 8. Superuser yaratish (agar kerak bo'lsa)
+docker-compose exec web python manage.py createsuperuser
+4. Ishga Tushirish
+bash
+# 9. Dasturni qayta ishga tushirish
+docker-compose down
+docker-compose up -d

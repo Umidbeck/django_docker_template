@@ -1,0 +1,134 @@
+django-docker-template/
+├── .dockerignore
+├── .env.example
+├── .gitignore
+├── docker-compose.yml
+├── Dockerfile
+├── Makefile
+├── README.md
+├── requirements.txt
+├── scripts/
+│   ├── entrypoint.sh
+│   └── wait_for_dscripts/wait_for_db.pyb.py
+└── app/
+    ├── manage.py
+    ├── static/
+    ├── media/
+    ├── app/
+    │   ├── __init__.py
+    │   ├── asgi.py
+    │   ├── settings/
+    │   │   ├── base.py
+    │   │   ├── development.py
+    │   │   └── production.py
+    │   ├── urls.py
+    │   └── wsgi.py
+    └── users/
+        ├── migrations/
+        ├── __init__.py
+        ├── admin.py
+        ├── apps.py
+        ├── models.py
+        ├── tests.py
+        └── views.py
+
+
+--------------------------------------------------------------
+
+1. Asosiy Fayllar
+📛 .dockerignore
+Nima? Docker image yaratilayotganda qaysi fayllarni chetlab o'tish kerakligini ko'rsatadi
+
+Nima uchun? Keraksiz fayllar (masalan, .git, __pycache__) imagega kiritilmasligi uchun
+
+🔐 .env.example
+Nima? Muhit o'zgaruvchilari uchun namunaviy fayl
+
+Nima uchun? Yangi loyihada cp .env.example .env qilib, sozlamalarni o'zgartirish uchun
+
+🚫 .gitignore
+Nima? Git tizimiga qo'shilmasligi kerak bo'lgan fayllar ro'yxati
+
+Nima uchun? Maxfiy ma'lumotlar (.env) yoki tijorat sirini saqlash uchun
+
+🐳 docker-compose.yml
+Nima? Konteynerlar (Django, PostgreSQL, Redis) ni boshqarish konfiguratsiyasi
+
+Nima uchun? Bitta buyruq bilan barcha servislarni ishga tushirish uchun
+
+🏗️ Dockerfile
+Nima? Docker image qanday yaratilishini tavsiflovchi fayl
+
+Nima uchun? Loyihangiz uchun moslashtirilgan image yaratish uchun
+
+🛠️ Makefile
+Nima? Tez-tez ishlatiladigan komandalar jamlanmasi
+
+Nima uchun? make up kabi qisqa komandalar bilan ishlash qulayligi uchun
+
+📖 README.md
+Nima? Loyiha haqida qo'llanma
+
+Nima uchun? Boshqalar (yoki kelajakda siz) loyihani qanday ishga tushirishni tushunishi uchun
+
+📦 requirements.txt
+Nima? Python kutubxonalari ro'yxati
+
+Nima uchun? pip install qilish kerak bo'lgan paketlarni saqlash uchun
+
+2. scripts/ Papkasi
+🚀 entrypoint.sh
+Nima? Konteyner ishga tushganda bajariladigan skript
+
+Nima uchun? Migratsiyalarni avtomatik bajarish, statik fayllarni yig'ish uchun
+
+⏳ wait_for_db.py
+Nima? PostgreSQL tayyor bo'lishini kutuvchi skript
+
+Nima uchun? Dastur ma'lumotlar bazasiga ulanishga urinishdan oldin bazaning ishga tushirilishini kutish uchun
+
+3. app/ Papkasi (Asosiy Django Loyiha)
+📂 app/ (Ichki papka)
+__init__.py - Python paketi sifatida tanitish uchun
+
+asgi.py - Asinxron server uchun kirish nuqtasi
+
+wsgi.py - Oddiy server uchun kirish nuqtasi
+
+urls.py - URL marshrutlari
+
+⚙️ settings/
+base.py - Barcha muhitlar uchun umumiy sozlamalar
+
+development.py - Rivojlanish muhiti uchun sozlamalar
+
+production.py - Ishlab chiqarish muhiti uchun sozlamalar
+
+👥 users/
+Nima? Foydalanuvchilar uchun Django appi
+
+Nima uchun? Ro'yxatdan o'tish, autentifikatsiya funksiyalari uchun
+
+4. Qanday Ishlatiladi?
+Loyihani olish:
+
+bash
+git clone https://github.com/.../django-docker-template.git myproject
+cd myproject
+Sozlamalarni tuzish:
+
+bash
+cp .env.example .env
+# Endi .env faylini o'zgartiring
+Ishga tushirish:
+
+bash
+docker-compose up -d --build
+Migratsiyalar:
+
+bash
+docker-compose exec web python manage.py migrate
+Superuser yaratish:
+
+bash
+docker-compose exec web python manage.py createsuperuser
