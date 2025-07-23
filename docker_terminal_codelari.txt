@@ -1,0 +1,65 @@
+
+🚀 Docker konteynerlarini ishga tushurish va to‘xtatish
+1. docker compose orqali ishga tushurish:
+
+sudo docker compose up -d
+
+    -d — konteynerlarni background (fond) rejimida ishga tushuradi.
+
+2. To‘xtatish:
+
+sudo docker compose down
+
+3. Faqat bitta konteynerni to‘xtatish:
+
+sudo docker stop <container_id_or_name>
+
+4. Faqat bitta konteynerni ishga tushurish:
+
+sudo docker start <container_id_or_name>
+
+📦 Docker konteynerlar va imijlar haqida ma’lumot
+5. Ishlayotgan konteynerlarni ko‘rish:
+
+sudo docker ps
+
+6. Hamma konteynerlarni (ishlamayotganlarini ham) ko‘rish:
+
+sudo docker ps -a
+
+7. Konteyner loglarini ko‘rish:
+
+sudo docker logs <container_id_or_name>
+
+    Masalan: sudo docker logs otaguzal_qr_project-web-1
+
+8. Konteyner ichiga kirish (terminalga o‘xshab):
+
+sudo docker exec -it <container_id_or_name> /bin/bash
+
+9. Docker imijlarini ko‘rish:
+
+sudo docker images
+
+10. Imijni o‘chirish:
+
+sudo docker rmi <image_id>
+
+11. Konteynerni o‘chirish:
+
+sudo docker rm <container_id>
+
+🛠️ Docker Compose faylni tekshirish va loglar
+12. Compose faylni validatsiya qilish:
+
+sudo docker compose config
+
+13. Barcha loglarni ko‘rish:
+
+sudo docker compose logs
+
+14. Maxsus servis loglari (masalan web yoki nginx) ni ko‘rish:
+
+sudo docker compose logs web
+sudo docker compose logs nginx
+
