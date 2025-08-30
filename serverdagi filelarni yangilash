@@ -1,0 +1,42 @@
+🚀 Qadam-baqadam tushuntirish:
+1. Localda ishlash
+
+PyCharm’da loyihangni och.
+
+Kodni o‘zgartir.
+
+O‘zgartirganingdan keyin git orqali commit qil:
+git add .
+git commit -m "Some changes"
+git push origin main
+
+. Serverda ishlash
+
+Serverga kir (SSH orqali):
+ssh user@server_ip
+So‘ng gitdan yangilash:
+git pull origin v2
+
+
+3. Docker konteynerlarni yangilash
+
+Agar loyihang docker-compose orqali ishlayotgan bo‘lsa, yangilangan kodni konteynerga o‘tkazish uchun quyidagini qilasan:
+docker compose down
+docker compose up -d --build
+
+
+--build kodi yangilansa ham qayta build qilib beradi.
+
+-d esa backgroundda ishlatadi.
+
+🔁 Qisqa qilib butun jarayon:
+
+Localda kod yozasan (PyCharm)
+
+GitHub’ga push qilasan
+
+Serverda git pull
+
+Docker compose up --build -d
+
+Shunda serverni qo‘lda tahrirlashga umuman hojat qolmaydi.
