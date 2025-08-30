@@ -1,0 +1,51 @@
+🔧 2GB swap fayl yaratish
+
+Terminalda bajar:
+
+1️⃣ Swap fayl yaratamiz:
+sudo fallocate -l 2G /swapfile
+
+👉 Bu /swapfile degan fayl yaratadi va 2GB joy ajratadi.
+
+Agar fallocate ishlamasa, quyidagini ishlat:2️⃣ Ruxsatlarini to‘g‘rilash
+sudo dd if=/dev/zero of=/swapfile bs=1M count=2048
+
+sudo chmod 600 /swapfile
+
+
+👉 Bu swap faylni faqat root o‘qishi/yozishi mumkin qiladi (xavfsizlik uchun).
+
+3️⃣ Swap sifatida formatlash
+
+sudo mkswap /swapfile
+
+
+4️⃣ Swap’ni yoqish
+sudo swapon /swapfile
+
+
+5️⃣ Swap ishga tushganini tekshirish
+free -h
+
+
+👉 Endi sen RAM yonida Swap: 2.0G ko‘rishing kerak.
+
+🔄 Swap’ni doimiy qilish
+
+Agar serverni qayta ishga tushirsang (reboot), swap yo‘qoladi. Uni doimiy qilish uchun:
+
+
+echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
+
+✅ Natija
+
+Endi serveringda:
+
+RAM: 1GB
+
+Swap: 2GB
+
+Umumiy “xotira”: ~3GB (lekin swap sekinroq ishlaydi).
+
+
+⚠️ Muhim: Swap — vaqtinchalik yechim. Agar loyihang o‘saversa, keyinroq serverni kamida 2–4GB RAM li qilib yangilash yaxshiroq.
